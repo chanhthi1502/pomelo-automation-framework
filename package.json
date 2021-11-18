@@ -1,0 +1,22 @@
+{
+  "name": "pomelo-automation-test",
+  "version": "1.0.0",
+  "description": "This is automation framework for Pomelo page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanhthi1502/pomelo-automation-framework.git"
+  },
+  "author": "Thi Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanhthi1502/pomelo-automation-framework/issues"
+  },
+  "homepage": "https://github.com/chanhthi1502/pomelo-automation-framework#readme",
+  "dependencies": {
+    "cypress": "^9.0.0"
+  }
+}
