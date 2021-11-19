@@ -19,8 +19,13 @@ export default class HomePage extends CommonPage {
     }
 
     get shoppingBagTitle(){
-        cy.log("get Shopping Bag button element")
+        cy.log("get Shopping Bag title element")
         return this.getElement(this.eleYml.MyShoppingBag_Title)
+    }
+
+    get shopDropDown(){
+        cy.log("get Shop Drop Down element")
+        return this.getElement(this.eleYml.Shop_DropDown)
     }
 
     clickShoppingBag(){
@@ -33,6 +38,12 @@ export default class HomePage extends CommonPage {
             expect(text).to.equal(expectedTitleShoppingBag)
         })
         return this
+    }
+
+    chooseCategory(catagoryName){
+        this.shopDropDown.click({multiple: true})
+        cy.contains(catagoryName).click()
+
     }
 
 
