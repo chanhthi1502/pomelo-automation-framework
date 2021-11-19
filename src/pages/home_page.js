@@ -18,8 +18,20 @@ export default class HomePage extends CommonPage {
         return this.getElement(this.eleYml.ShoppingBag_Button)
     }
 
+    get shoppingBagTitle(){
+        cy.log("get Shopping Bag button element")
+        return this.getElement(this.eleYml.MyShoppingBag_Title)
+    }
+
     clickShoppingBag(){
         this.shoppingBagButton.click()
+        return this
+    }
+
+    verifyShoppingBag(expectedTitleShoppingBag){
+        this.shoppingBagTitle.invoke('text').then((text) => {
+            expect(text).to.equal(expectedTitleShoppingBag)
+        })
         return this
     }
 

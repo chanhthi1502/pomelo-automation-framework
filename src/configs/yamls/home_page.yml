@@ -1,1 +1,2 @@
 ShoppingBag_Button: //li[contains(@data-cy,'nav_user__cart')]
+MyShoppingBag_Title: //span[contains(@class,'jsx-3858356863 subtitle1 shopping-bag__title')]
