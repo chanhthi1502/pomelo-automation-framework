@@ -18,6 +18,7 @@ describe('Home Page test suite', function(){
 
                 homePage.go()
                         .clickShoppingBag()
+                        .verifyShoppingBag("My Shopping Bag")
             })
     })
 
