@@ -1,0 +1,3 @@
+MyShoppingBag_Title: //span[contains(@class,'jsx-3858356863 subtitle1 shopping-bag__title')]
+Size_DropDown: (//select[contains(@class,'jsx-2192573192 pml-dropdown__select full-width')])[1]
+Quantity_DropDown: (//select[contains(@class,'jsx-2192573192 pml-dropdown__select full-width')])[2]
