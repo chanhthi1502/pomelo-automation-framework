@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login',(email,password) => {
+    cy.visit('https://www.pomelofashion.com/th/en')
+    cy.xpath('//span[contains(text(),"Login")]').click()
+    cy.xpath('//input[@name="email"]').type(email)
+    cy.xpath('//input[@name="password"]').type(password)
+    cy.xpath('//button[contains(@data-cy,"auth__login__email__button")]').click()
+    cy.wait(3000)
+    return this
+})

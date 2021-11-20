@@ -3,5 +3,9 @@
     "fixturesFolder" : "src/configs",
     "supportFile" : "src/support/index.js",
     "pluginsFile" : "src/plugins/index.js",
-    "screenshotsFolder" : "src/screenshots"
+    "screenshotsFolder" : "src/screenshots",
+    "env": {
+        "email" : "pomelotest1205@gmail.com",
+        "password" : "Pomelotest1502"
+    }
 }
