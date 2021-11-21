@@ -24,6 +24,12 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+/* 
+##### This is method to log in to website ####
+- Parameters:
+1. email
+2. password
+*/
 Cypress.Commands.add('login',(email,password) => {
     cy.visit('https://www.pomelofashion.com/th/en')
     cy.xpath('//span[contains(text(),"Login")]').click()

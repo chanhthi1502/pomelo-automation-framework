@@ -24,26 +24,82 @@ export default class ShoppingBagPage extends CommonPage {
         return this.getElement(this.eleYml.ViewMyShoppingBag_Button)
     }
 
+    get productName(){
+        cy.log("get product name element")
+        return this.getElement(this.eleYml.ProductName_label)
+    }
+
+    get removeProductButton(){
+        cy.log("get remove product element")
+        return this.getElement(this.eleYml.RemoveProduct_button)
+    }
+
+    /* 
+        ##### This is method to View My Shopping Bag button ####
+        - Parameters:
+          1. None
+    */
+
     viewMyShoppingBag(){
         this.viewShoppingBagButton.click()
         return this
     }
 
-    verifyShoppingBag(expectedTitleShoppingBag){
+    /* 
+        ##### This is method to Verify Shopping Bag details ####
+        - Parameters:
+          1. expectedTitleShoppingBag
+    */
+
+    verifyShoppingBag(expectedTitleShoppingBag,expectedProductName,expectedSize,expectedQuantity){
         this.shoppingBagTitle.invoke('text').then((text) => {
             expect(text).to.equal(expectedTitleShoppingBag)
         })
+
+        this.productName.invoke('text').then((text) => {
+            expect(text).to.equal(expectedProductName)
+        })
+
+        //this.sizeDropDown.should('have.value',expectedSize)
+
+        //this.quantityDropDown.should('have.value',expectedQuantity)
+
         return this
     }
+
+    /* 
+        ##### This is method to adjust quantity of items in Shopping Bag ####
+        - Parameters:
+          1. quantityNumber
+    */
     
     adjustQuantityShoppingBag(quantityNumber){
         this.quantityDropDown.select(quantityNumber)
         return this
     }
 
+    /* 
+        ##### This is method to adjust size of items in Shopping Bag ####
+        - Parameters:
+          1. size
+    */
+
     adjustSizeShoppingBag(size){
         this.sizeDropDown.select(size)
         return this
     }
+
+     /* 
+        ##### This is method to remove items in Shopping Bag ####
+        - Parameters:
+          1. None
+    */
+
+    removeProductFromCart(){
+        this.removeProductButton.click()
+        return this
+    }
+
+
 
 }

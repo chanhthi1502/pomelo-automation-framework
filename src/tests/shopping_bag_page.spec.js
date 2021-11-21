@@ -42,11 +42,12 @@ describe('Shopping Bag test suite', function(){
         })
         cy.get('@elementProductDetailsPage').then(function(ele){
             const productDetailsPage = new ProductDetailsPage(ele)
-            productDetailsPage.addToBag("M")
+            productDetailsPage.addToBag('M')
         })
         cy.get('@elementShoppingBagPage').then(function(ele){
             const shoppingBagPage = new ShoppingBagPage(ele)
             shoppingBagPage.viewMyShoppingBag()
+                           .verifyShoppingBag('My Shopping Bag','Mali Blouse - Rose','M','1')
         })
 
     })
@@ -58,8 +59,7 @@ describe('Shopping Bag test suite', function(){
             })
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
-                shoppingBagPage.verifyShoppingBag("My Shopping Bag")
-                               .adjustQuantityShoppingBag("3")
+                shoppingBagPage.adjustQuantityShoppingBag("3")
             })
 
     })
@@ -71,8 +71,19 @@ describe('Shopping Bag test suite', function(){
         })
         cy.get('@elementShoppingBagPage').then(function(ele){
             const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.verifyShoppingBag("My Shopping Bag")
-                           .adjustSizeShoppingBag("S")
+            shoppingBagPage.adjustSizeShoppingBag("S")
+        })
+
+    })
+
+    it('TC004 - Customer be able to delete of product items in Shopping Bag', function(){
+        cy.get('@elementHomePage').then(function(ele){
+            const homePage = new HomePage(ele)
+            homePage.clickShoppingBag()
+        })
+        cy.get('@elementShoppingBagPage').then(function(ele){
+            const shoppingBagPage = new ShoppingBagPage(ele)
+            shoppingBagPage.removeProductFromCart()
         })
 
     })

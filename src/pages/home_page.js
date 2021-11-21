@@ -23,14 +23,25 @@ export default class HomePage extends CommonPage {
         return this.getElement(this.eleYml.Shop_DropDown)
     }
 
+    /* 
+        ##### This is method to click Shopping Bag icon in header ####
+        - Parameters:
+          1. None
+    */
     clickShoppingBag(){
         this.shoppingBagButton.click()
         return this
     }
 
-    chooseCategory(catagoryName){
+    /* 
+        ##### This is method to choose category in Shop dropdown ####
+        - Parameters:
+          1. categoryName
+    */
+
+    chooseCategory(categoryName){
         this.shopDropDown.click({multiple: true})
-        cy.contains(catagoryName).click()
+        cy.contains(categoryName).click()
         return this
     }
 
