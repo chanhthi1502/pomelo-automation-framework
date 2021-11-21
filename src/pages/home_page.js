@@ -31,7 +31,8 @@ export default class HomePage extends CommonPage {
     chooseCategory(catagoryName){
         this.shopDropDown.click({multiple: true})
         cy.contains(catagoryName).click()
-
+        return this
     }
+
 
 }

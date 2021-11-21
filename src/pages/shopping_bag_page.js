@@ -19,6 +19,16 @@ export default class ShoppingBagPage extends CommonPage {
         return this.getElement(this.eleYml.Size_DropDown)
     }
 
+    get viewShoppingBagButton(){
+        cy.log("get View Shopping Bag element")
+        return this.getElement(this.eleYml.ViewMyShoppingBag_Button)
+    }
+
+    viewMyShoppingBag(){
+        this.viewShoppingBagButton.click()
+        return this
+    }
+
     verifyShoppingBag(expectedTitleShoppingBag){
         this.shoppingBagTitle.invoke('text').then((text) => {
             expect(text).to.equal(expectedTitleShoppingBag)
