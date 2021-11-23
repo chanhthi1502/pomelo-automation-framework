@@ -4,3 +4,5 @@ Size_DropDown: (//select[contains(@class,'jsx-2192573192 pml-dropdown__select fu
 Quantity_DropDown: (//select[contains(@class,'jsx-2192573192 pml-dropdown__select full-width')])[2]
 ProductName_label: //a[contains(@class,'body2 product-name')]
 RemoveProduct_button: //div[contains(@class,'jsx-4202549713 cart-remove')]
+EnterPromoCode_input: //input[contains(@class,'jsx-1695452889 body1 pml-input__input')]
+ApplyPromoCode_button: //span[contains(@class,'pml-btn-label button') and text() = 'Apply']

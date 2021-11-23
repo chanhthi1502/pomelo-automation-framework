@@ -88,6 +88,54 @@ describe('Shopping Bag test suite', function(){
 
     })
 
+    it('TC005 - Customer be able to fill-in and click apply promo code - verify Invalid Promo code', function(){
+        cy.get('@elementHomePage').then(function(ele){
+            const homePage = new HomePage(ele)
+            homePage.chooseCategory('Blouses')
+            //homePage.chooseCategory('Jewelry')
+        })
+        cy.get('@elementProductCategoryPage').then(function(ele){
+            const productCategoryPage = new ProductCategoryPage(ele)
+            productCategoryPage.chooseProduct('Mali Blouse - Rose')
+            //productPage.chooseProduct('Uranus Earring - Pink/Purple')
+        })
+        cy.get('@elementProductSinglePage').then(function(ele){
+            const productSinglePage = new ProductSinglePage(ele)
+            productSinglePage.addToBag('M')
+        })
+        cy.get('@elementShoppingBagPage').then(function(ele){
+            const shoppingBagPage = new ShoppingBagPage(ele)
+            shoppingBagPage.viewMyShoppingBag()
+                           .applyPromoCode('AAABC')
+                           .verifyInvalidPromoCode()
+                           .removeProductFromCart()
+        })
+
+    })
+
+    it('TC006 - Customer be able to validate proceed to checkout button', function(){
+        cy.get('@elementHomePage').then(function(ele){
+            const homePage = new HomePage(ele)
+            homePage.chooseCategory('Blouses')
+        })
+        cy.get('@elementProductCategoryPage').then(function(ele){
+            const productCategoryPage = new ProductCategoryPage(ele)
+            productCategoryPage.chooseProduct('Mali Blouse - Rose')
+            //productPage.chooseProduct('Uranus Earring - Pink/Purple')
+        })
+        cy.get('@elementProductSinglePage').then(function(ele){
+            const productSinglePage = new ProductSinglePage(ele)
+            productSinglePage.addToBag('M')
+        })
+        cy.get('@elementShoppingBagPage').then(function(ele){
+            const shoppingBagPage = new ShoppingBagPage(ele)
+            shoppingBagPage.viewMyShoppingBag()
+                           .verifyProceedToCheckOutButton()
+                           .removeProductFromCart()
+        })
+
+    })
+
     
 
 })
