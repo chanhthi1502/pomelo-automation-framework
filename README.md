@@ -5,6 +5,14 @@ This is documentation for Pomelo QA challenge assignment
 
 Please open this [link](https://docs.google.com/spreadsheets/d/1Ys8vey-Lp6X9Ilj5P8Tz-n5eGfBNezn8Uf7g8ZkNBk4/edit#gid=853402295) to take a look on Analyst the requirements and all test cases
 
+I have 5 tabs:
+
+* **Question to clarify**: My questions or concern during reading requirement.
+* **Ideas or suggestion**: My ideas and suggestion during i'm playing around website.
+* **Test Case - Functional**: All test cases related to functional testing of requirement in assignment
+* **Test Case - Non-Functional**: All test cases related to non-functional testing of requirement in assignment
+* **Bug in Production**: During i'm playing around i found some small bugs in website 
+
 ## Part 2 : Automated test assignment
 
 ### Download and clone project
