@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-import CommonPage from '../pages/commonPage'
+import CommonPage from './commonPage'
 
-export default class ProductPage extends CommonPage {
+export default class ProductCategoryPage extends CommonPage {
 
     get product(){
         cy.log("get product element")

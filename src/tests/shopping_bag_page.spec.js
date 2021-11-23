@@ -2,8 +2,8 @@
 
 import HomePage from '../pages/home_page'
 import ShoppingBagPage from '../pages/shopping_bag_page'
-import ProductPage from '../pages/product_page'
-import ProductDetailsPage from '../pages/product_details_page'
+import ProductCategoryPage from '../pages/product_category_page'
+import ProductSinglePage from '../pages/product_single_page'
 
 YAML = require('yamljs')
 
@@ -20,12 +20,12 @@ describe('Shopping Bag test suite', function(){
             cy.wrap(YAML.parse(yamlString)).as('elementShoppingBagPage')
         })
 
-        cy.readFile('./src/configs/yamls/product_page.yml').then(function (yamlString){
-            cy.wrap(YAML.parse(yamlString)).as('elementProductPage')
+        cy.readFile('./src/configs/yamls/product_category_page.yml').then(function (yamlString){
+            cy.wrap(YAML.parse(yamlString)).as('elementProductCategoryPage')
         })
 
-        cy.readFile('./src/configs/yamls/product_details_page.yml').then(function (yamlString){
-            cy.wrap(YAML.parse(yamlString)).as('elementProductDetailsPage')
+        cy.readFile('./src/configs/yamls/product_single_page.yml').then(function (yamlString){
+            cy.wrap(YAML.parse(yamlString)).as('elementProductSinglePage')
         })
     })
 
@@ -35,14 +35,14 @@ describe('Shopping Bag test suite', function(){
             homePage.chooseCategory('Blouses')
             //homePage.chooseCategory('Jewelry')
         })
-        cy.get('@elementProductPage').then(function(ele){
-            const productPage = new ProductPage(ele)
-            productPage.chooseProduct('Mali Blouse - Rose')
+        cy.get('@elementProductCategoryPage').then(function(ele){
+            const productCategoryPage = new ProductCategoryPage(ele)
+            productCategoryPage.chooseProduct('Mali Blouse - Rose')
             //productPage.chooseProduct('Uranus Earring - Pink/Purple')
         })
-        cy.get('@elementProductDetailsPage').then(function(ele){
-            const productDetailsPage = new ProductDetailsPage(ele)
-            productDetailsPage.addToBag('M')
+        cy.get('@elementProductSinglePage').then(function(ele){
+            const productSinglePage = new ProductSinglePage(ele)
+            productSinglePage.addToBag('M')
         })
         cy.get('@elementShoppingBagPage').then(function(ele){
             const shoppingBagPage = new ShoppingBagPage(ele)

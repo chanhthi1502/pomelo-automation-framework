@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-import CommonPage from '../pages/commonPage'
+import CommonPage from './commonPage'
 
-export default class ProductDetailsPage extends CommonPage {
+export default class ProductSinglePage extends CommonPage {
 
     get addToBagButton(){
         cy.log("get Add To Bag button element")
