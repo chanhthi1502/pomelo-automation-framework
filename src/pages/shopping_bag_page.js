@@ -34,6 +34,16 @@ export default class ShoppingBagPage extends CommonPage {
         return this.getElement(this.eleYml.RemoveProduct_button)
     }
 
+    get promoCodeInput(){
+        cy.log("get promo code input element")
+        return this.getElement(this.eleYml.EnterPromoCode_input)
+    }
+
+    get applyPromoCodeButton(){
+        cy.log("get promo code button element")
+        return this.getElement(this.eleYml.ApplyPromoCode_button)
+    }
+
     /* 
         ##### This is method to View My Shopping Bag button ####
         - Parameters:
@@ -97,6 +107,44 @@ export default class ShoppingBagPage extends CommonPage {
 
     removeProductFromCart(){
         this.removeProductButton.click()
+        return this
+    }
+
+    /* 
+        ##### This is method to apply promo Code in Shopping Bag ####
+        - Parameters:
+          1. promoCode
+    */
+    applyPromoCode(promoCode){
+        this.promoCodeInput.click()
+        this.promoCodeInput.type(promoCode)
+        this.applyPromoCodeButton.click()
+        return this
+    }
+
+    /* 
+        ##### This is method to verify invalid promo Code message in Shopping Bag ####
+        - Parameters:
+          1. None
+    */
+    verifyInvalidPromoCode(){
+        cy.get('.pomelo-snack-bar__content').children().invoke('text').then((text) => {
+            expect(text).to.equal("Invalid voucher code")
+        })
+
+        return this
+    }
+
+    /* 
+        ##### This is method to verify proceed to checkout button in Shopping Bag ####
+        - Parameters:
+          1. None
+    */
+    verifyProceedToCheckOutButton(){
+        cy.get('.cart-checkout-button').children().invoke('text').then((text) => {
+                expect(text).to.equal("proceed to Checkout")
+        })
+    
         return this
     }
 
