@@ -20,6 +20,7 @@
     "cypress": "^9.0.0",
     "cypress-iframe": "^1.0.1",
     "cypress-xpath": "^1.6.2",
+    "jasmine-data-provider": "^2.2.0",
     "yamljs": "^0.3.0"
   }
 }

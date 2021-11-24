@@ -16,6 +16,7 @@ export default class ProductCategoryPage extends CommonPage {
     */
     chooseProduct(productName){
         cy.wait(3000)
+        cy.log(productName)
         let xpathProduct = '//span[contains(text(),"' + productName +'")]'
         cy.xpath(xpathProduct).click()
         return this

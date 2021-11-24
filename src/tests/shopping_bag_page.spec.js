@@ -4,9 +4,11 @@ import HomePage from '../pages/home_page'
 import ShoppingBagPage from '../pages/shopping_bag_page'
 import ProductCategoryPage from '../pages/product_category_page'
 import ProductSinglePage from '../pages/product_single_page'
-import CheckoutPage from '../pages/checkout_page'
 
 YAML = require('yamljs')
+
+const dataTest = require ('../dataSource/pomelo_data_test')
+const using = require('jasmine-data-provider')
 
 describe('Shopping Bag test suite', function(){
 
@@ -30,120 +32,115 @@ describe('Shopping Bag test suite', function(){
         })
     })
 
-    it('TC001 - A customer adds the products any cetegory and click "Cart" Icon', function(){
-        cy.get('@elementHomePage').then(function(ele){
-            const homePage = new HomePage(ele)
-            homePage.chooseCategory('Blouses')
-            //homePage.chooseCategory('Jewelry')
-        })
-        cy.get('@elementProductCategoryPage').then(function(ele){
-            const productCategoryPage = new ProductCategoryPage(ele)
-            productCategoryPage.chooseProduct('Mali Blouse - Rose')
-            //productPage.chooseProduct('Uranus Earring - Pink/Purple')
-        })
-        cy.get('@elementProductSinglePage').then(function(ele){
-            const productSinglePage = new ProductSinglePage(ele)
-            productSinglePage.addToBag('M')
-        })
-        cy.get('@elementShoppingBagPage').then(function(ele){
-            const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.viewMyShoppingBag()
-                           .verifyShoppingBag('My Shopping Bag','Mali Blouse - Rose','M','1')
+    using(dataTest['test'].data, (data,description) => {
+        it(`Test Case - A customer adds the ${description} and click "Cart" Icon`, function(){
+            cy.get('@elementHomePage').then(function(ele){
+                const homePage = new HomePage(ele)
+                homePage.chooseCategory(data.category)
+            })
+            cy.get('@elementProductCategoryPage').then(function(ele){
+                const productCategoryPage = new ProductCategoryPage(ele)
+                productCategoryPage.chooseProduct(data.product)
+                //productPage.chooseProduct('Uranus Earring - Pink/Purple')
+            })
+            cy.get('@elementProductSinglePage').then(function(ele){
+                const productSinglePage = new ProductSinglePage(ele)
+                productSinglePage.addToBag(data.size)
+            })
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.viewMyShoppingBag()
+                               .verifyShoppingBag('My Shopping Bag','Mali Blouse - Rose','M','1')
+            })
+    
         })
 
-    })
-
-    it('TC002 - Customer be able to adjusts quantity of product items in Shopping Bag', function(){
+        it('Test Case - Customer be able to adjusts quantity of product items in Shopping Bag', function(){
             cy.get('@elementHomePage').then(function(ele){
                 const homePage = new HomePage(ele)
                 homePage.clickShoppingBag()
             })
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
-                shoppingBagPage.adjustQuantityShoppingBag("3")
+                shoppingBagPage.adjustQuantityShoppingBag(data.quantity)
             })
 
-    })
-
-    it('TC003 - Customer be able to adjusts size of product items in Shopping Bag', function(){
-        cy.get('@elementHomePage').then(function(ele){
-            const homePage = new HomePage(ele)
-            homePage.clickShoppingBag()
-        })
-        cy.get('@elementShoppingBagPage').then(function(ele){
-            const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.adjustSizeShoppingBag("S")
         })
 
-    })
-
-    it('TC004 - Customer be able to delete of product items in Shopping Bag', function(){
-        cy.get('@elementHomePage').then(function(ele){
-            const homePage = new HomePage(ele)
-            homePage.clickShoppingBag()
-        })
-        cy.get('@elementShoppingBagPage').then(function(ele){
-            const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.removeProductFromCart()
-        })
-
-    })
-
-    it('TC005 - Customer be able to fill-in and click apply promo code - verify Invalid Promo code', function(){
-        cy.get('@elementHomePage').then(function(ele){
-            const homePage = new HomePage(ele)
-            homePage.chooseCategory('Blouses')
-            //homePage.chooseCategory('Jewelry')
-        })
-        cy.get('@elementProductCategoryPage').then(function(ele){
-            const productCategoryPage = new ProductCategoryPage(ele)
-            productCategoryPage.chooseProduct('Mali Blouse - Rose')
-            //productPage.chooseProduct('Uranus Earring - Pink/Purple')
-        })
-        cy.get('@elementProductSinglePage').then(function(ele){
-            const productSinglePage = new ProductSinglePage(ele)
-            productSinglePage.addToBag('M')
-        })
-        cy.get('@elementShoppingBagPage').then(function(ele){
-            const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.viewMyShoppingBag()
-                           .applyPromoCode('AAABC')
-                           .verifyInvalidPromoCode()
-                           .removeProductFromCart()
-        })
-
-    })
-
-    it('TC006 - Customer be able to validate proceed to checkout button', function(){
-        cy.get('@elementHomePage').then(function(ele){
-            const homePage = new HomePage(ele)
-            homePage.chooseCategory('Blouses')
-        })
-        cy.get('@elementProductCategoryPage').then(function(ele){
-            const productCategoryPage = new ProductCategoryPage(ele)
-            productCategoryPage.chooseProduct('Mali Blouse - Rose')
-            //productPage.chooseProduct('Uranus Earring - Pink/Purple')
-        })
-        cy.get('@elementProductSinglePage').then(function(ele){
-            const productSinglePage = new ProductSinglePage(ele)
-            productSinglePage.addToBag('M')
-        })
-        cy.get('@elementShoppingBagPage').then(function(ele){
-            const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.viewMyShoppingBag()
-                           .verifyProceedToCheckOutButton()
-                           .checkOut()
-            cy.go('back')
-                                
-        })
-
-        cy.get('@elementShoppingBagPage').then(function(ele){
-            const shoppingBagPage = new ShoppingBagPage(ele)
-            shoppingBagPage.removeProductFromCart()
-        })
-
-    })
-
+        it('Test Case - Customer be able to adjusts size of product items in Shopping Bag', function(){
+            cy.get('@elementHomePage').then(function(ele){
+                const homePage = new HomePage(ele)
+                homePage.clickShoppingBag()
+            })
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.adjustSizeShoppingBag(data.newSize)
+            })
     
+        })
 
+        it('Test Case - Customer be able to delete of product items in Shopping Bag', function(){
+            cy.get('@elementHomePage').then(function(ele){
+                const homePage = new HomePage(ele)
+                homePage.clickShoppingBag()
+            })
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.removeProductFromCart()
+            })
+    
+        })
+
+        it('Test Case - Customer be able to fill-in and click apply promo code - verify Invalid Promo code', function(){
+            cy.get('@elementHomePage').then(function(ele){
+                const homePage = new HomePage(ele)
+                homePage.chooseCategory(data.category)
+            })
+            cy.get('@elementProductCategoryPage').then(function(ele){
+                const productCategoryPage = new ProductCategoryPage(ele)
+                productCategoryPage.chooseProduct(data.product)
+            })
+            cy.get('@elementProductSinglePage').then(function(ele){
+                const productSinglePage = new ProductSinglePage(ele)
+                productSinglePage.addToBag(data.size)
+            })
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.viewMyShoppingBag()
+                               .applyPromoCode(data.promoCode)
+                               .verifyInvalidPromoCode()
+                               .removeProductFromCart()
+            })
+    
+        })
+
+        it('Test Case - Customer be able to validate proceed to checkout button', function(){
+            cy.get('@elementHomePage').then(function(ele){
+                const homePage = new HomePage(ele)
+                homePage.chooseCategory(data.category)
+            })
+            cy.get('@elementProductCategoryPage').then(function(ele){
+                const productCategoryPage = new ProductCategoryPage(ele)
+                productCategoryPage.chooseProduct(data.product)
+            })
+            cy.get('@elementProductSinglePage').then(function(ele){
+                const productSinglePage = new ProductSinglePage(ele)
+                productSinglePage.addToBag(data.size)
+            })
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.viewMyShoppingBag()
+                               .verifyProceedToCheckOutButton()
+                               .checkOut()
+                cy.go('back')
+                                    
+            })
+    
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.removeProductFromCart()
+            })
+    
+        })
+    })
 })
