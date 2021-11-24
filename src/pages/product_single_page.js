@@ -25,6 +25,7 @@ export default class ProductSinglePage extends CommonPage {
                 cy.log(xpathSize)
                 cy.xpath(xpathSize).click({force: true})
             }
+
         })
         this.addToBagButton.click({force: true})
         return this

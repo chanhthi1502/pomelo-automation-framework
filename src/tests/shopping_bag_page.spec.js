@@ -87,6 +87,7 @@ describe('Shopping Bag test suite', function(){
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
                 shoppingBagPage.removeProductFromCart()
+                               .verifyEmptyShoppingBag()
             })
     
         })
@@ -110,6 +111,7 @@ describe('Shopping Bag test suite', function(){
                                .applyPromoCode(data.promoCode)
                                .verifyInvalidPromoCode()
                                .removeProductFromCart()
+                               .verifyEmptyShoppingBag()
             })
     
         })
@@ -134,11 +136,11 @@ describe('Shopping Bag test suite', function(){
                                .checkOut()
                 cy.go('back')
                                     
-            })
-    
+            }) 
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
                 shoppingBagPage.removeProductFromCart()
+                               .verifyEmptyShoppingBag()
             })
     
         })

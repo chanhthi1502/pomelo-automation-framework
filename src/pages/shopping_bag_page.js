@@ -44,6 +44,16 @@ export default class ShoppingBagPage extends CommonPage {
         return this.getElement(this.eleYml.ApplyPromoCode_button)
     }
 
+    get emptyBagTitle(){
+        cy.log("get empty bag element")
+        return this.getElement(this.eleYml.EmptyBag_title)
+    }
+
+    get shopNowButton(){
+        cy.log("get shop now element")
+        return this.getElement(this.eleYml.ShopNow_button)
+    }
+
     /* 
         ##### This is method to View My Shopping Bag button ####
         - Parameters:
@@ -78,6 +88,23 @@ export default class ShoppingBagPage extends CommonPage {
     }
 
     /* 
+        ##### This is method to Verify Empty Shopping Bag ####
+        - Parameters:
+          1. None
+    */
+
+    verifyEmptyShoppingBag(){
+        this.emptyBagTitle.invoke('text').then((text) => {
+            expect(text).to.equal('Your Bag is Empty')
+        })
+    
+        this.shopNowButton.invoke('text').then((text) => {
+            expect(text).to.equal('SHOP NOW')
+        })
+    
+            return this
+        }
+    /* 
         ##### This is method to adjust quantity of items in Shopping Bag ####
         - Parameters:
           1. quantityNumber
@@ -100,7 +127,7 @@ export default class ShoppingBagPage extends CommonPage {
         return this
     }
 
-     /* 
+    /* 
         ##### This is method to remove items in Shopping Bag ####
         - Parameters:
           1. None
