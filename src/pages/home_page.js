@@ -40,6 +40,7 @@ export default class HomePage extends CommonPage {
     */
 
     chooseCategory(categoryName){
+        cy.wait(3000)
         this.shopDropDown.click({multiple: true})
         cy.contains(categoryName).click()
         return this
