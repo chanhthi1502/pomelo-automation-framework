@@ -4,6 +4,7 @@ import HomePage from '../pages/home_page'
 import ShoppingBagPage from '../pages/shopping_bag_page'
 import ProductCategoryPage from '../pages/product_category_page'
 import ProductSinglePage from '../pages/product_single_page'
+import CheckoutPage from '../pages/checkout_page'
 
 YAML = require('yamljs')
 
@@ -131,7 +132,14 @@ describe('Shopping Bag test suite', function(){
             const shoppingBagPage = new ShoppingBagPage(ele)
             shoppingBagPage.viewMyShoppingBag()
                            .verifyProceedToCheckOutButton()
-                           .removeProductFromCart()
+                           .checkOut()
+            cy.go('back')
+                                
+        })
+
+        cy.get('@elementShoppingBagPage').then(function(ele){
+            const shoppingBagPage = new ShoppingBagPage(ele)
+            shoppingBagPage.removeProductFromCart()
         })
 
     })

@@ -146,7 +146,12 @@ export default class ShoppingBagPage extends CommonPage {
         cy.get('.cart-checkout-button').children().invoke('text').then((text) => {
                 expect(text).to.equal("proceed to Checkout")
         })
-    
+        return this
+    }
+
+    checkOut(){
+        cy.get('.cart-checkout-button').click()
+        cy.url().should('include', '/checkout')
         return this
     }
 
