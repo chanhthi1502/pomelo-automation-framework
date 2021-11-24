@@ -95,6 +95,7 @@ export default class ShoppingBagPage extends CommonPage {
     */
 
     adjustSizeShoppingBag(size){
+        cy.wait(3000)
         this.sizeDropDown.select(size)
         return this
     }
@@ -106,6 +107,7 @@ export default class ShoppingBagPage extends CommonPage {
     */
 
     removeProductFromCart(){
+        cy.wait(3000)
         this.removeProductButton.click()
         return this
     }
