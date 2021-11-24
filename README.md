@@ -35,6 +35,37 @@ Please run following command to install all required packages
 npm test
 ```
 
+### Git Hub Action
+
+Set up basic git hub action for CI/CD
+
+--.github
+   |--workflows
+     |--node.js.yml
+     
+ Configure all CI/CD in node.js.yml
+ 
+ ```yml
+steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install ## Install all packages are needed
+    - run: npm test ## Run Test
+```
+Please check result in Action tab
+
+<img width="1023" alt="Screen Shot 2021-11-24 at 11 11 07" src="https://user-images.githubusercontent.com/4730067/143173625-1ab41edf-ea87-4e3a-a851-7460696580d7.png">
+
+<img width="1005" alt="Screen Shot 2021-11-24 at 11 12 22" src="https://user-images.githubusercontent.com/4730067/143173745-065c6c99-9a72-4a47-8a21-db92f05e90bc.png">
+
+<img width="1438" alt="Screen Shot 2021-11-24 at 11 13 53" src="https://user-images.githubusercontent.com/4730067/143173951-6559b9c5-3e8a-48e2-b107-359de276f74c.png">
+
+
+
 ### Structure of project
 
 ```bash
