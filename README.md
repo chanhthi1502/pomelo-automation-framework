@@ -29,11 +29,19 @@ npm install
 
 ### Run test
 
-Please run following command to install all required packages
+Please run following command to install all required packages. Please note that if you have be failed one ore more test cases, please try rerun it.
 
 ```bash
 npm test
 ```
+<img width="857" alt="Screen Shot 2021-11-24 at 15 42 25" src="https://user-images.githubusercontent.com/4730067/143204240-954aeda4-1a76-4394-a72c-dc791f7f1f8b.png">
+
+```bash
+npx cypress open
+```
+<img width="800" alt="Screen Shot 2021-11-24 at 15 46 16" src="https://user-images.githubusercontent.com/4730067/143205144-7691943e-d58d-4e0a-a9e8-7c2be1516cbd.png">
+
+<img width="1195" alt="Screen Shot 2021-11-24 at 15 49 59" src="https://user-images.githubusercontent.com/4730067/143205198-45f7bef1-df8c-43b3-b00d-2ccea21ddad9.png">
 
 ### Git Hub Action
 
@@ -88,7 +96,55 @@ Shop_DropDown: (//span[contains(text(),'Shop')])[1]
 ```
 
 #### 2. Data Sources folder
-Include Json files for data input in test cases
+Include Json files for data input in test cases 
+
+Data for test cases will be formatted like below
+
+```js
+module.exports = {
+   test:{
+       data:{
+            "Mali Blouse - Rose in Blouses Category" : 
+                     {category: 'Blouses', product: 'Mali Blouse - Rose', size : 'M', quantity :'3', newSize :'S', promoCode: 'AAABC'}
+       }
+   }
+}
+```
+We should be install package 
+
+```bash
+npm install jasmine-data-provider
+```
+In spec file (test case file), we will use like below
+
+```js
+const dataTest = require ('../dataSource/pomelo_data_test')
+const using = require('jasmine-data-provider')
+
+using(dataTest['test'].data, (data,description) => {
+        it(`Test Case - A customer adds the ${description} and click "Cart" Icon`, function(){
+            cy.get('@elementHomePage').then(function(ele){
+                const homePage = new HomePage(ele)
+                homePage.chooseCategory(data.category)
+            })
+            cy.get('@elementProductCategoryPage').then(function(ele){
+                const productCategoryPage = new ProductCategoryPage(ele)
+                productCategoryPage.chooseProduct(data.product)
+                //productPage.chooseProduct('Uranus Earring - Pink/Purple')
+            })
+            cy.get('@elementProductSinglePage').then(function(ele){
+                const productSinglePage = new ProductSinglePage(ele)
+                productSinglePage.addToBag(data.size)
+            })
+            cy.get('@elementShoppingBagPage').then(function(ele){
+                const shoppingBagPage = new ShoppingBagPage(ele)
+                shoppingBagPage.viewMyShoppingBag()
+                               .verifyShoppingBag('My Shopping Bag','Mali Blouse - Rose','M','1')
+            })
+    
+        })
+})
+```
 
 #### 3. Pages
 Include js file - this is file for each page of website - to call elements and actions of that page
