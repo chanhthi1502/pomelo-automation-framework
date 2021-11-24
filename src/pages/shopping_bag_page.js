@@ -69,6 +69,9 @@ export default class ShoppingBagPage extends CommonPage {
         ##### This is method to Verify Shopping Bag details ####
         - Parameters:
           1. expectedTitleShoppingBag
+          2. expectedProductName
+          3. expectedSize
+          4. expectedQuantity
     */
 
     verifyShoppingBag(expectedTitleShoppingBag,expectedProductName,expectedSize,expectedQuantity){
@@ -80,9 +83,9 @@ export default class ShoppingBagPage extends CommonPage {
             expect(text).to.equal(expectedProductName)
         })
 
-        //this.sizeDropDown.should('have.value',expectedSize)
-
-        //this.quantityDropDown.should('have.value',expectedQuantity)
+        cy.get('.pml-dropdown__select').eq(0).find('option:selected').should('have.text', expectedSize)
+        
+        cy.get('.pml-dropdown__select').eq(1).find('option:selected').should('have.text', expectedQuantity)
 
         return this
     }

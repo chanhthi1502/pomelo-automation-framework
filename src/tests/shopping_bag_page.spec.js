@@ -41,7 +41,6 @@ describe('Shopping Bag test suite', function(){
             cy.get('@elementProductCategoryPage').then(function(ele){
                 const productCategoryPage = new ProductCategoryPage(ele)
                 productCategoryPage.chooseProduct(data.product)
-                //productPage.chooseProduct('Uranus Earring - Pink/Purple')
             })
             cy.get('@elementProductSinglePage').then(function(ele){
                 const productSinglePage = new ProductSinglePage(ele)
@@ -50,7 +49,7 @@ describe('Shopping Bag test suite', function(){
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
                 shoppingBagPage.viewMyShoppingBag()
-                               .verifyShoppingBag('My Shopping Bag','Mali Blouse - Rose','M','1')
+                               .verifyShoppingBag('My Shopping Bag',data.product,data.size,'1')
             })
     
         })
@@ -63,6 +62,7 @@ describe('Shopping Bag test suite', function(){
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
                 shoppingBagPage.adjustQuantityShoppingBag(data.quantity)
+                               .verifyShoppingBag('My Shopping Bag',data.product,data.size,data.quantity)
             })
 
         })
@@ -75,6 +75,7 @@ describe('Shopping Bag test suite', function(){
             cy.get('@elementShoppingBagPage').then(function(ele){
                 const shoppingBagPage = new ShoppingBagPage(ele)
                 shoppingBagPage.adjustSizeShoppingBag(data.newSize)
+                               .verifyShoppingBag('My Shopping Bag',data.product,data.newSize,'1')
             })
     
         })
