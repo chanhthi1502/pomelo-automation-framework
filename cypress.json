@@ -4,6 +4,15 @@
     "supportFile" : "src/support/index.js",
     "pluginsFile" : "src/plugins/index.js",
     "screenshotsFolder" : "src/screenshots",
+    "videosFolder" : "src/videos",
+    "reporter" : "mochawesome",
+    "reporterOptions" :
+    {
+        "reportDir" : "src/reports",
+        "overwrite" : true,
+        "html" : true,
+        "json" : false
+    },
     "env": {
         "email" : "pomelotest1205@gmail.com",
         "password" : "Pomelotest1502"

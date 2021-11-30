@@ -1,3 +1,5 @@
 node_modules
 src/screenshots
+src/videos
 cypress
+src/reports
