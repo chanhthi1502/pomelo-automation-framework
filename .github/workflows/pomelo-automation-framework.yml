@@ -29,3 +29,8 @@ jobs:
         with: 
           name: test-report
           path: reports
+      - name: Notify on Slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      
