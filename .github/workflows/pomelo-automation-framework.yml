@@ -23,6 +23,7 @@ jobs:
         run: npm ci
       - name: Run automation to generate report
         run: npm run test-report
+        continue-on-error: true
       - name: Upload test report
         uses: actions/upload-artifact@v2
         with: 
