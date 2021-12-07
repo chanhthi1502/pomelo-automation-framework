@@ -22,7 +22,7 @@ jobs:
       - name: Install package
         run: npm ci
       - name: Run automation to generate report
-        run: npm run-report
+        run: npm run test-report
       - name: Upload test report
         uses: actions/upload-artifact@v2
         with: 
