@@ -4,7 +4,8 @@
   "description": "This is automation framework for Pomelo page",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cypress run"
+    "test": "./node_modules/.bin/cypress run",
+    "run-report": "cypress run --reporter mochawesome"
   },
   "repository": {
     "type": "git",
