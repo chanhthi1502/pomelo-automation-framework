@@ -8,7 +8,7 @@
     "reporter" : "mochawesome",
     "reporterOptions" :
     {
-        "reportDir" : "src/reports",
+        "reportDir" : "reports",
         "overwrite" : true,
         "html" : true,
         "json" : false
